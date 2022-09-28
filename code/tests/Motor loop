@@ -1,0 +1,3 @@
+motorC.run(200)
+wait(500) # run the lift motor command for half a second
+motorC.stop()
