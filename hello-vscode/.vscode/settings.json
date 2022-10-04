@@ -1,0 +1,8 @@
+{
+    "files.eol": "\n",
+    "ev3devBrowser.download.exclude": "{**/.*,LICENSE,README.md}",
+    "terminal.integrated.shell.windows": "cmd.exe",
+    "python.analysis.extraPaths": [
+        "chicili",　　　　　　　　// 自定义模块的相对路径，可多个，可绝对路径　　
+    ]
+}
