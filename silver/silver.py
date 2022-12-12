@@ -24,7 +24,7 @@ def limit_speed(speed):
 os.system('setfont Lat15-Terminus24x12 ')
 
 # Set LEGO port for Pixy2 on input port 1
-in1 = LegoPort(INPUT_2)
+in1 = LegoPort(INPUT_1)
 in1.mode = 'other-i2c'
 # Short wait for port to get ready
 sleep(0.5)
@@ -38,7 +38,7 @@ address = 0x54
 sigs = 3
 
 # Connect TouchSensor (to stop script)
-ts = TouchSensor(INPUT_1)
+#ts = TouchSensor(INPUT_2)
 
 # Connect LargeMotors
 motor = Motor(OUTPUT_A)
@@ -73,7 +73,8 @@ def plachta():
 
     sig = 1
     sig2 = 2
-     
+    
+    print("sig value is: ", block[6])
     if sig == block[7]*256 + block[6] or sig2 == block[7]*256 + block[6]:
         # SIG1 detected, control motors
         x = block[9]*256 + block[8]   # X-centroid of largest SIG1-object
@@ -116,9 +117,6 @@ def plachta():
     return False
             
 
-        
-
-
 
 
 
@@ -129,22 +127,17 @@ if __name__ == "__main__":
     i = 1
     spkr = Sound()
 
-    '''
-    while(True):
 
-        motor.on_for_seconds(speed=-n, seconds=1)
-        if motor.is_stalled :
-            n = -n
-            spkr.speak("Stalled change of direction operate")
-            sleep(1)
-
-'''
 
     while True:
+        
         if not istrack:
-            motor.on_for_seconds(speed=-n, seconds=0.8)
+            motor.on_for_seconds(speed=-n, seconds=1)
             if motor.is_stalled :
                 n = -n
                 #spkr.speak("Stalled change of direction operate")
-                #sleep(0.5)
+                sleep(0.5)
+        
+
         istrack = plachta()
+        
